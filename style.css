@@ -1,7 +1,7 @@
 body {
   background: url('bg.jpg');
   background-size: cover;
-  font-family: "Brush Script MT", cursive;
+  font-family: "Courier New", monospace;
   padding: 30px;
 }
 .card {
