@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Tri ân cô Thuần</title>
+  <script src="https://cdn.jsdelivr.net/pyodide/v0.23.4/full/pyodide.js"></script>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="card">
+    <h1>Thư Tri Ân Gửi Cô <span style="color:#007acc">Thuần</span></h1>
+    <p>Chúng em xin gửi lời cảm ơn chân thành đến cô – người đã dạy chúng em từng dòng code.</p>
+
+    <div class="code-block" id="code">
+def tri_an_co_giao():
+    co_giao = "Cô Thuần"
+    cam_on = f"Cảm ơn {co_giao} vì những giờ học vui vẻ!"
+    tri_an = f"{co_giao}, chúng em cảm ơn cô rất nhiều!"
+    return cam_on + "\n " + tri_an
+
+print(tri_an_co_giao())
+    </div>
+
+    <button onclick="runPython()">Chạy Python</button>
+    <div id="output">⏳ Kết quả sẽ hiển thị ở đây...</div>
+  </div>
+
+  <script>
+    let pyodideReady = false;
+    let pyodide;
+
+    // Tải Pyodide và các gói phụ trợ
+    async function loadPyodideAndPackages() {
+      pyodide = await loadPyodide();
+      pyodideReady = true;
+    }
+
+    // Gọi hàm tải Pyodide khi trang được tải
+    loadPyodideAndPackages();
+
+    async function runPython() {
+      if (!pyodideReady) {
+        document.getElementById("output").innerText = "⏳ Đang tải Pyodide...";
+        return;
+      }
+
+      const code = document.getElementById("code").innerText;
+      let output = "";
+
+      // Bắt stdout
+      const originalStdout = pyodide.setStdout({
+        batched: (s) => output += s
+      });
+
+      try {
+        // Chạy mã Python và hiển thị kết quả
+        await pyodide.runPythonAsync(code);
+        document.getElementById("output").innerText = output.trim();
+      } catch (err) {
+        document.getElementById("output").innerText = "❌ Lỗi: " + err;
+      } finally {
+        pyodide.setStdout(originalStdout); // Khôi phục stdout gốc
+      }
+    }
+  </script>
+</body>
+</html>
