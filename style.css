@@ -1,9 +1,12 @@
 body {
-  background: url('bg.jpg');
-  background-size: cover;
+  background: linear-gradient(-45deg, #fbeaea, #f9e0c7, #ede0d4, #e6ccb2);
+  background-size: 400% 400%;
+  animation: gradientBG 18s ease infinite;
   font-family: "Courier New", monospace;
   padding: 30px;
+  min-height: 100vh;
 }
+
 .card {
   background: #fff;
   border-radius: 10px;
@@ -35,4 +38,19 @@ button {
   border-radius: 5px;
   white-space: pre-wrap;
   font-size: 15px;
+}
+#toggleCodeBtn {
+  margin-bottom: 10px;
+  background-color: #f39c12;
+}
+#typing-text::after {
+  content: "|";
+  animation: blink 0.8s infinite;
+  color: #007acc;
+}
+
+@keyframes blink {
+  0%   { opacity: 1; }
+  50%  { opacity: 0; }
+  100% { opacity: 1; }
 }
