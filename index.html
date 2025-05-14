@@ -9,9 +9,9 @@
 <body>
   <div class="card">
     <h1>Thư Tri Ân Gửi Cô <span style="color:#007acc">Thuần</span></h1>
-    <p>Chúng em xin gửi lời cảm ơn chân thành đến cô – người đã dạy chúng em từng dòng code.</p>
-
-    <div class="code-block" id="code">
+    <p id="typing-text" style="min-height: 60px;"></p>
+    <button onclick="toggleCode()" id="toggleCodeBtn">📂 Hiện source code</button>
+    <div class="code-block" id="code" style="display: none;">
 def tri_an_co_giao():
     co_giao = "Cô Thuần"
     cam_on = f"Cảm ơn {co_giao} vì những giờ học vui vẻ!"
@@ -21,7 +21,7 @@ def tri_an_co_giao():
 print(tri_an_co_giao())
     </div>
 
-    <button onclick="runPython()">Chạy Python</button>
+    <button onclick="runPython()">Chạy code Python</button>
     <div id="output">⏳ Kết quả sẽ hiển thị ở đây...</div>
   </div>
 
@@ -62,6 +62,33 @@ print(tri_an_co_giao())
         pyodide.setStdout(originalStdout); // Khôi phục stdout gốc
       }
     }
+    function toggleCode() {
+        const codeBlock = document.getElementById("code");
+        const toggleBtn = document.getElementById("toggleCodeBtn");
+
+        if (codeBlock.style.display === "none") {
+          codeBlock.style.display = "block";
+          toggleBtn.innerText = "📁 Ẩn code Python";
+        } else {
+          codeBlock.style.display = "none";
+          toggleBtn.innerText = "📂 Hiện code Python";
+        }
+      }
+    const message = "Chúng em xin gửi lời cảm ơn chân thành đến cô – người đã dạy chúng em từng dòng code.";
+      const typingElement = document.getElementById("typing-text");
+      let index = 0;
+
+      function typeEffect() {
+        if (index < message.length) {
+          typingElement.innerHTML += message.charAt(index);
+          index++;
+          setTimeout(typeEffect, 100); // tốc độ gõ (ms)
+        }
+      }
+
+      window.onload = function () {
+        typeEffect();
+      };
   </script>
 </body>
 </html>
