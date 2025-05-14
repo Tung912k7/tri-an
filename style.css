@@ -1,25 +1,15 @@
 body {
-  background: linear-gradient(-45deg, #fbeaea, #f9e0c7, #ede0d4, #e6ccb2);
-  background-size: 300% 300%;
-  animation: gradientBG 15s ease infinite;
+  background: linear-gradient(-45deg, #fbc2eb, #a6c1ee, #fad0c4, #ffd1ff);
+  background-size: 400% 400%;
+  animation: gradientBG 18s ease infinite;
   font-family: "Courier New", monospace;
   padding: 30px;
   min-height: 100vh;
 }
-
-/* Gradient animation */
 @keyframes gradientBG {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
-
-/* Tùy chỉnh cho điện thoại */
-@media (max-width: 768px) {
-  body {
-    background-size: 200% 200%;
-    animation: gradientBG 12s ease infinite;
-  }
+  0% {background-position: 0% 50%;}
+  50% {background-position: 100% 50%;}
+  100% {background-position: 0% 50%;}
 }
 .card {
   background: #fff;
